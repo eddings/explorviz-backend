@@ -149,11 +149,10 @@ public final class LandscapeRepositoryModel implements IPeriodicTimeSignalReceiv
         } else {
 
           calculatedTotalRequests = calculateTotalRequests(this.internalLandscape);
-          this.internalLandscape.getTimestamp().setTotalRequests(calculatedTotalRequests);
           this.internalLandscape.setTimestamp(new Timestamp(milliseconds, calculatedTotalRequests));
 
-          this.landscapeRepository.save(milliseconds, this.internalLandscape,
-              calculatedTotalRequests);
+          this.landscapeRepository
+              .save(milliseconds, this.internalLandscape, calculatedTotalRequests);
           try {
             final Landscape l = this.deepCopy(this.internalLandscape);
             l.createOutgoingApplicationCommunication();
@@ -212,7 +211,7 @@ public final class LandscapeRepositoryModel implements IPeriodicTimeSignalReceiv
 
   public void insertIntoModel(final IRecord inputIRecord) {
     // called every second
-    this.insertionRepositoryPart.insertIntoModel(inputIRecord, this.internalLandscape,
-        this.remoteCallRepositoryPart);
+    this.insertionRepositoryPart
+        .insertIntoModel(inputIRecord, this.internalLandscape, this.remoteCallRepositoryPart);
   }
 }

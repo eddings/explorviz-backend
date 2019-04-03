@@ -61,9 +61,13 @@ public class MongoReplayJsonApiRepository implements ReplayRepository<String> {
     }
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info(String.format("Saved landscape {timestamp: %d, id: %s, totalRequests: %d}",
-          timestamp, replayLandscape.getId(), totalRequests));
+          timestamp,
+          replayLandscape.getId(),
+          totalRequests));
     }
   }
+
+
 
   @Override
   public String getByTimestamp(final long timestamp) {
@@ -136,7 +140,8 @@ public class MongoReplayJsonApiRepository implements ReplayRepository<String> {
     // TODO: Replays
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info(String.format("Cleaned %d landscape and %d replay objects",
-          landsapeResult.getDeletedCount(), replayResult.getDeletedCount()));
+          landsapeResult.getDeletedCount(),
+          replayResult.getDeletedCount()));
     }
   }
 
@@ -160,7 +165,8 @@ public class MongoReplayJsonApiRepository implements ReplayRepository<String> {
     }
 
     final List<Timestamp> timestamps = rawTimestamps.stream()
-        .map(t -> new Timestamp(t, this.getTotalRequests(t))).collect(Collectors.toList());
+        .map(t -> new Timestamp(t, this.getTotalRequests(t)))
+        .collect(Collectors.toList());
 
     return timestamps;
   }

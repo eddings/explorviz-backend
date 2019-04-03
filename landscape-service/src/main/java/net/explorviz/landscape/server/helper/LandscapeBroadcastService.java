@@ -32,8 +32,11 @@ public class LandscapeBroadcastService {
   }
 
   public void broadcastMessage(final Landscape landscape) {
-    final OutboundSseEvent event = this.sse.newEventBuilder().name("message")
-        .mediaType(APPLICATION_JSON_API_TYPE).data(landscape).build();
+    final OutboundSseEvent event = this.sse.newEventBuilder()
+        .name("message")
+        .mediaType(APPLICATION_JSON_API_TYPE)
+        .data(landscape)
+        .build();
 
     this.broadcaster.broadcast(event);
   }
